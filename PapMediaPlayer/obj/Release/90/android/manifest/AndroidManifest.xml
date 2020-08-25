@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.PapIndustries.PapMediaPlayer" android:versionCode="1" android:versionName="1.0" android:installLocation="preferExternal">
+  <uses-sdk android:minSdkVersion="16" android:targetSdkVersion="28" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <application android:label="Pap Media Player" android:icon="@drawable/logo" android:theme="@style/MyTheme" android:name="android.app.Application" android:allowBackup="true" android:debuggable="true">
+    <activity android:icon="@drawable/logo" android:label="Settings" android:name="md570948532c06b9c853274980954b9f61d.AdvancedActivity" />
+    <activity android:icon="@drawable/logo" android:label="Details" android:screenOrientation="portrait" android:name="md570948532c06b9c853274980954b9f61d.Details" />
+    <activity android:configChanges="orientation|screenSize" android:icon="@drawable/logo" android:label="Playlist Manager" android:name="md570948532c06b9c853274980954b9f61d.PlaylistManagerActivity" />
+    <receiver android:name="md570948532c06b9c853274980954b9f61d.Receiver">
+      <intent-filter>
+        <action android:name="Pause" />
+        <action android:name="Next" />
+        <action android:name="Previous" />
+        <action android:name="Cancel" />
+        <action android:name="Details" />
+        <action android:name="LoopBack" />
+      </intent-filter>
+    </receiver>
+    <receiver android:name="md570948532c06b9c853274980954b9f61d.ServiceActivityReceiver">
+      <intent-filter>
+        <action android:name="Activity.Pause" />
+        <action android:name="Activity.Next" />
+        <action android:name="Activity.LoopBack" />
+        <action android:name="Activity.SeekTo" />
+      </intent-filter>
+    </receiver>
+    <activity android:configChanges="orientation|screenSize" android:icon="@drawable/logo" android:label="Pap Media Player" android:name="md570948532c06b9c853274980954b9f61d.MainActivity" />
+    <service android:name="com.PapIndustries.PapMediaPlayerService" />
+    <receiver android:name="md5598c25293d1dc342051e3546ed6ee699.SelectChangeReceiver">
+      <intent-filter>
+        <action android:name="Action.SelectChanged" />
+      </intent-filter>
+    </receiver>
+    <receiver android:name="md5598c25293d1dc342051e3546ed6ee699.SortMethodReceiver">
+      <intent-filter>
+        <action android:name="Action.Sort" />
+      </intent-filter>
+    </receiver>
+    <activity android:icon="@drawable/logo" android:label="Pap Media Player" android:noHistory="true" android:theme="@style/splashscreen2" android:name="md5ab56a5c012e9c4ca38112ab193deb3dc.SplashScreen" />
+    <activity android:label="Pap Media Player" android:noHistory="true" android:theme="@style/splashscreen" android:name="md5ab56a5c012e9c4ca38112ab193deb3dc.SplashScreen2" />
+    <activity android:label="Pap Media Player" android:noHistory="true" android:theme="@style/splashscreen3" android:name="md5ab56a5c012e9c4ca38112ab193deb3dc.SplashScreen3" />
+    <activity android:label="Pap Media Player" android:noHistory="true" android:theme="@style/splashscreen4" android:name="md5ab56a5c012e9c4ca38112ab193deb3dc.SplashScreen4" />
+    <activity android:label="Pap Media Player" android:noHistory="true" android:theme="@style/splashscreen5" android:name="md5ab56a5c012e9c4ca38112ab193deb3dc.SplashScreen5" />
+    <activity android:label="Pap Media Player" android:noHistory="true" android:theme="@style/splashscreen6" android:name="md5ab56a5c012e9c4ca38112ab193deb3dc.SplashScreen6" />
+    <activity android:label="Pap Media Player" android:noHistory="true" android:theme="@style/splashscreen2" android:name="md5ab56a5c012e9c4ca38112ab193deb3dc.Selector">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+    </activity>
+    <activity android:label="Delete Songs" android:name="md58d4992f24df3885c0762ad64dcc4dd74.Delete_Songs" />
+    <activity android:label="Filters And Keys" android:name="md58d4992f24df3885c0762ad64dcc4dd74.Filters_and_Keys" />
+    <activity android:label="Hidden Songs" android:name="md58d4992f24df3885c0762ad64dcc4dd74.Hidden_Songs" />
+    <activity android:icon="@drawable/logo" android:label="Notification Settings" android:name="md58d4992f24df3885c0762ad64dcc4dd74.Notification_Settings" />
+    <activity android:icon="@drawable/logo" android:label="Search Configuration" android:name="md58d4992f24df3885c0762ad64dcc4dd74.SearchConfiguration" />
+    <activity android:label="Startup" android:name="md58d4992f24df3885c0762ad64dcc4dd74.Startup" />
+    <provider android:name="mono.MonoRuntimeProvider" android:exported="false" android:initOrder="1999999999" android:authorities="com.PapIndustries.PapMediaPlayer.mono.MonoRuntimeProvider.__mono_init__" />
+    <!--suppress ExportedReceiver-->
+    <receiver android:name="mono.android.Seppuku">
+      <intent-filter>
+        <action android:name="mono.android.intent.action.SEPPUKU" />
+        <category android:name="mono.android.intent.category.SEPPUKU.com.PapIndustries.PapMediaPlayer" />
+      </intent-filter>
+    </receiver>
+    <meta-data android:name="android.support.VERSION" android:value="25.4.0" />
+  </application>
+</manifest>

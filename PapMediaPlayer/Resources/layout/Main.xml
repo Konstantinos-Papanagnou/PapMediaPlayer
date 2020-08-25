@@ -1,0 +1,102 @@
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minWidth="25px"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:minHeight="25px"
+    android:weightSum="100"
+    android:id="@+id/Main">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Main_AddRemoveLayout"
+        android:visibility="gone">
+        <Button
+            android:id="@+id/Main_AddToPlaylist"
+            android:text="Add"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/Main_RemoveFromPlaylist"
+            android:text="Remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+      <TextView android:text="Selected: "
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:id="@+id/Main_Selected"
+                android:textSize="20dp"
+                android:layout_gravity="right"/>
+    </LinearLayout>
+    <EditText
+        android:id="@+id/Main_SearchSong"
+        android:visibility="gone"
+        android:hint="Song Name or Artist"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+    <TextView
+        android:text="Currently Playing: Nothing"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/Main_CurrentlyPlayingTextView" />
+            <LinearLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent"
+            android:id="@+id/LoadingLL">
+            <ProgressBar
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar1" />
+            <TextView
+                android:id="@+id/ProgressDisplayedText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+            android:text="Loading Songs"
+            android:textColor="@android:color/white"
+            android:gravity="center_horizontal"/>
+
+            </LinearLayout>
+    <GridView
+        android:visibility="gone"
+        android:layout_weight="95"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchMode="columnWidth"
+        android:numColumns="3"
+        android:id="@+id/Main_gridView"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_weight="5"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:weightSum="3">
+        <Button
+            android:text="Previous"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:id="@+id/Main_PreviousButton"
+            android:layout_weight="1" />
+        <Button
+            android:text="Play/Pause"
+            android:id="@+id/Main_PlayPauseBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_weight="1" />
+        <Button
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Next"
+            android:layout_gravity="right"
+            android:id="@+id/Main_NextButton"
+            android:layout_weight="1" />
+    </LinearLayout>
+</LinearLayout>

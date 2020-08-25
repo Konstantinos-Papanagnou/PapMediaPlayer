@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:tools="http://schemas.android.com/tools"
+      tools:context=".MainActivity">
+  <item
+    android:id ="@+id/ActionBar_Search"
+    android:icon="@drawable/Search"
+    android:showAsAction="always"
+    android:title="Search"/>
+  <item
+    android:id ="@+id/ActionBar_Settings"
+    android:icon="@drawable/settings"
+    android:showAsAction="always"
+    android:title="Settings">
+    <menu>
+      <item android:id="@+id/ActionBar_PlaylistManager"
+            android:title="Playlist Manager"
+            android:icon="@drawable/PlaylistManager"/>
+      <item android:id="@+id/ActionBar_Refresh"
+            android:title="Refresh"
+            android:icon="@drawable/Refresh"/>
+      <item android:id="@+id/ActionBar_Sort"
+            android:icon="@drawable/Sort"
+            android:title="Sort" />
+      <item android:id="@+id/ActionBar_Loopback"
+            android:icon="@drawable/LoopInOrder"
+            android:title="LoopBack Settings" />
+      <item android:id="@+id/ActionBar_Advanced"
+            android:icon="@drawable/Advanced"
+            android:title="Advanced" />
+      <item android:id="@+id/ActionBar_About"
+            android:icon="@drawable/About"
+            android:title="About" />
+    </menu>
+  </item>
+</menu>
