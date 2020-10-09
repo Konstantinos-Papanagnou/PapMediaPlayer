@@ -9,6 +9,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Javax.Crypto;
 
 namespace PapMediaPlayer.Manager
 {
@@ -72,13 +73,9 @@ namespace PapMediaPlayer.Manager
 
         public override int HandleAutoReplay(int max, int position)
         {
-            if(Shuffled == null)
+            if (Shuffled == null || Shuffled.Length != max)
             {
-                for (int i = 0; i < max; i++)
-                    Shuffled[i] = i;
-                Random rand = new Random(DateTime.Now.Millisecond);
-                Shuffled = Shuffled.OrderBy(x => rand.Next()).ToArray();
-                prevPos = 0;
+                SetupShuffled(max);
                 return Shuffled[prevPos];
             }
             if (++prevPos >= max)
@@ -103,18 +100,24 @@ namespace PapMediaPlayer.Manager
                         }
                         prevPos = position;
                         return value; */
-            if (Shuffled == null)
+            if (Shuffled == null || Shuffled.Length != max)
             {
-                for (int i = 0; i < max; i++)
-                    Shuffled[i] = i;
-                Random rand = new Random(DateTime.Now.Millisecond);
-                Shuffled = Shuffled.OrderBy(x => rand.Next()).ToArray();
-                prevPos = 0;
+                SetupShuffled(max);
             }
             if (backwards && prevPos != 0)
                 return Shuffled[prevPos - 1];
 
             return Shuffled[++prevPos];
+        }
+
+        private void SetupShuffled(int max)
+        {
+            Shuffled = new int[max];
+            for (int i = 0; i < max; i++)
+                Shuffled[i] = i;
+            Random rand = new Random(DateTime.Now.Millisecond);
+            Shuffled = Shuffled.OrderBy(x => rand.Next()).ToArray();
+            prevPos = 0;
         }
 
         public override IReplayManager Next()
