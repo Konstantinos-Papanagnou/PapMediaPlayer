@@ -13,6 +13,7 @@ namespace PapMediaPlayer.XmlParser
         static readonly string Path = System.IO.Path.Combine(InternalStorageHelper.InternalXmlFileLocation, "Cache", "Cache.json");
         public static void Write(List<Track> tracks)
         {
+            Directory.CreateDirectory(System.IO.Path.Combine(InternalStorageHelper.InternalXmlFileLocation, "Cache"));
             foreach (var track in tracks)
             {
                 track.Image = null;
