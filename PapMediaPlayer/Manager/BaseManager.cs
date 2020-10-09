@@ -53,6 +53,7 @@ namespace PapMediaPlayer.Manager
     {
 
         private int prevPos = 0;
+        int[] Shuffled;
 
         public override int GetIcon()
         {
@@ -71,26 +72,49 @@ namespace PapMediaPlayer.Manager
 
         public override int HandleAutoReplay(int max, int position)
         {
-            Random rand = new Random(DateTime.Now.Millisecond);
-            prevPos = position;
-            int value = rand.Next(0, max);
+            if(Shuffled == null)
+            {
+                for (int i = 0; i < max; i++)
+                    Shuffled[i] = i;
+                Random rand = new Random(DateTime.Now.Millisecond);
+                Shuffled = Shuffled.OrderBy(x => rand.Next()).ToArray();
+                prevPos = 0;
+                return Shuffled[prevPos];
+            }
+            if (++prevPos >= max)
+                prevPos = 0;
+            //Random rand = new Random(DateTime.Now.Millisecond);
+            //prevPos = position;
+/*            int value = rand.Next(0, max);
             if (value == position && max > 8)
-                value = HandleAutoReplay(max, position);
-            return value;
+                value = HandleAutoReplay(max, position);*/
+            return Shuffled[prevPos];
         }
 
         public override int HandleUserActivity(int max, int position, bool backwards = false)
         {
-            if (backwards && position != prevPos && prevPos < max)
-                return prevPos;
-            Random rand = new Random(DateTime.Now.Millisecond);
-            int value = rand.Next(0, max);
-            if (value == position && max > 8)
+            /*            if (backwards && position != prevPos && prevPos < max)
+                            return prevPos;
+                        Random rand = new Random(DateTime.Now.Millisecond);
+                        int value = rand.Next(0, max);
+                        if (value == position && max > 8)
+                        {
+                            value = HandleUserActivity(max, position);
+                        }
+                        prevPos = position;
+                        return value; */
+            if (Shuffled == null)
             {
-                value = HandleUserActivity(max, position);
+                for (int i = 0; i < max; i++)
+                    Shuffled[i] = i;
+                Random rand = new Random(DateTime.Now.Millisecond);
+                Shuffled = Shuffled.OrderBy(x => rand.Next()).ToArray();
+                prevPos = 0;
             }
-            prevPos = position;
-            return value;
+            if (backwards && prevPos != 0)
+                return Shuffled[prevPos - 1];
+
+            return Shuffled[++prevPos];
         }
 
         public override IReplayManager Next()
