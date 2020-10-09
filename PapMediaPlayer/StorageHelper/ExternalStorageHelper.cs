@@ -13,9 +13,9 @@ namespace PapMediaPlayer.StorageHelper
     /// <exception cref="NotMountedException">Hits a NotMountedException when it cannot find sdcard. SD card path varies from device to device but should be correct.</exception>
     public class ExternalStorage
     {
-        string[] filters;
-        char[] specialChars;
-        Context act;
+        readonly string[] filters;
+        readonly char[] specialChars;
+        readonly Context act;
         public ExternalStorage(Context act, string[] filters, char[] specialChars)
         {
             this.filters = filters;
@@ -75,7 +75,7 @@ namespace PapMediaPlayer.StorageHelper
                     }
                 }
             }
-            File f = new File(path);
+           // File f = new File(path);
             //if (!f.CanRead() || !f.CanWrite())
                 //throw new NotMountedException("SD card not Mounted or have restricted access! If you have an SD card mounted go to advanced settings and configure the Search Options and filters and keys for more advanced users");
             if (path == string.Empty)
