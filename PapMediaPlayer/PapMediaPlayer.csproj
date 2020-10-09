@@ -38,6 +38,7 @@
     <Debugger>Xamarin</Debugger>
     <AndroidEnableProfiledAot>false</AndroidEnableProfiledAot>
     <MandroidI18n />
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>PdbOnly</DebugType>
@@ -57,6 +58,7 @@
     </AndroidLinkSkip>
     <AndroidSupportedAbis />
     <AndroidStoreUncompressedFileExtensions />
+    <LangVersion>default</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />

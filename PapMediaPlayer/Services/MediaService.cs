@@ -81,7 +81,8 @@ namespace PapMediaPlayer.Services
             }
             SetNotificationBar();
             RegisterReceivers();
-            StartForeground(SERVICE_ID, notify);
+            if(notify != null)
+                StartForeground(SERVICE_ID, notify);
             base.OnCreate();
         }
 
@@ -136,7 +137,8 @@ namespace PapMediaPlayer.Services
             if (!RequestAudioFocus())
                 StopSelf();
             player.Reset();
-            player.SetDataSource(tracks[song].Path);
+            if (tracks.Count != 0)
+                player.SetDataSource(tracks[song].Path);
         }
         private void RegisterReceivers()
         {
@@ -206,6 +208,8 @@ namespace PapMediaPlayer.Services
         }
         private void PlayNext()
         {
+            if (tracks.Count == 0)
+                return;
             player.Reset();
             song = manager.HandleUserActivity(tracks.Count, song);
             player.SetDataSource(tracks[song].Path);
@@ -217,6 +221,8 @@ namespace PapMediaPlayer.Services
         }
         private void PlayPrevious()
         {
+            if (tracks.Count == 0)
+                return;
             player.Reset();
             song = manager.HandleUserActivity(tracks.Count, song, true);
             player.SetDataSource(tracks[song].Path);
@@ -229,6 +235,8 @@ namespace PapMediaPlayer.Services
 
         private void BroadcastSongUpdate()
         {
+            if (tracks.Count == 0)
+                return;
             Intent intent = new Intent("Activity."+ReceivedData.Actions.Next.ToString());
             intent.PutExtra("PARAMS", JsonConvert.SerializeObject(tracks[song]));
             SendBroadcast(intent);
@@ -258,6 +266,8 @@ namespace PapMediaPlayer.Services
 
         private void Player_Completion(object sender, EventArgs e)
         {
+            if (tracks.Count == 0)
+                return;
             if(!FirstRun)
                 song = manager.HandleAutoReplay(tracks.Count, song);
             else
@@ -387,6 +397,8 @@ namespace PapMediaPlayer.Services
 
         private void SetNotificationBar()
         {
+            if (tracks.Count == 0)
+                return;
             Intent playPause = new Intent("Pause");
             Intent previous = new Intent("Previous");
             Intent next = new Intent("Next");

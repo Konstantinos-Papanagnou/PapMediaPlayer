@@ -501,6 +501,11 @@ namespace PapMediaPlayer
 
         private void CurrentlyPlaying_Click()
         {
+            if(ViewManager.TrackCount() == 0)
+            {
+                Toast.MakeText(this, "No Songs to play", ToastLength.Long).Show();
+                return;
+            }
             if (DetailsInstanceExists)
                 return;
             DetailsInstanceExists = true;
@@ -518,7 +523,7 @@ namespace PapMediaPlayer
 
         public void Next_Click(object sender, sys.EventArgs e)
         {
-                ServiceStartHelper.StartHybridService(this, Services.ServiceCallAction.Next);
+            ServiceStartHelper.StartHybridService(this, Services.ServiceCallAction.Next);
         }
         public void PlayPause_Click(object sender, sys.EventArgs e)
         {
